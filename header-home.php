@@ -1,27 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
+	<meta charset="<?php bloginfo('charset'); ?>">
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="<?php bloginfo('description'); ?>">
+
 	<?php wp_head(); ?>
 </head>
 
-<?php 
-
-	if( is_front_page() ):
-		$hoopy_classes = array('hoopy-class', 'my-class');
-	else:
-		$hoopy_classes = array('no-homepage');
-	endif;
-
-?>
-
-<body <?php body_class($hoopy_classes); ?>>
+<body <?php body_class(); ?>>
 	
 	<header id="header" class="header">
 		<div class="container">
 			<div class="inner">
-				<a href="/" class="header-title"><h1>DUC SIEGENTHALER</h1></a>
+				<a href="/" class="header-title"><h1><?php echo bloginfo('name'); ?></h1></a>
 				<nav class="header-nav">
 					<?php
 						wp_nav_menu(array(

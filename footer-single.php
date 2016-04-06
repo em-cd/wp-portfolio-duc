@@ -4,7 +4,7 @@
 		<div class="footer-wrapper">
 			<div class="footer-border"></div>
 			<div class="container">
-				<p>*** some *** widgets *** go *** here ***</p>
+				<p>*** some *** widgets *** go *** here *** ? ***</p>
 			</div>
 		</div>
 	</footer>
@@ -13,15 +13,21 @@
 			<header class="menu-header">
 				<div class="container">
 					<div class="inner">
-						<a href="/" class="header-title"><h1>DUC SIEGENTHALER</h1></a>
+						<a href="/" class="header-title"><h1><?php echo bloginfo('name'); ?></h1></a>
 						<div class="header-menu-name">
-							<a href="<?php the_permalink?>"><h2><?php $pages = get_pages(array(
-	'meta_key' => '_wp_page_template',
-	'meta_value' => 'page-portfolio.php'
-));
-foreach($pages as $page){
-	echo $page->post_title;
-}; ?></h2></a>
+							<?php
+							if (is_singular('portfolio') ):
+								$portfolios = get_pages(array(
+									'meta_key' => '_wp_page_template',
+									'meta_value' => 'page-portfolio.php'
+								));
+								foreach($portfolios as $portfolio){
+									echo '<a href="'.get_permalink($portfolio).'"><h2>'.$portfolio->post_title.'</h2></a>';
+								};
+							else:
+								echo '<a href="'.get_permalink( get_option( 'page_for_posts' ) ).'"><h2>'.get_the_title( get_option('page_for_posts')).'</h2></a>';
+							endif;
+							?>
 						</div>
 						<div class="header-border"></div>
 					</div>

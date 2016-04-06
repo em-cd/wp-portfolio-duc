@@ -13,6 +13,7 @@ endif;
 		<div class="container">
 			<article class="portfolio">
 				<h1><?php the_title(); ?></h1>
+				<?php the_excerpt(); ?>
 				<?php the_content(); ?>
 			</article>
 		</div>
@@ -21,4 +22,4 @@ endif;
 	endif;
 	?>
 
-<?php get_footer(); ?>
+<?php get_footer('single'); ?>

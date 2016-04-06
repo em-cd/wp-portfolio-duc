@@ -25,21 +25,23 @@ endif;
 			while( $loop -> have_posts() ): $loop -> the_post(); ?>
 
 				<article class="post">
-					<div class="post-thumbnail-holder">
-						<div class="post-thumbnail" style="background-image: url('<?php the_post_thumbnail_url('small'); ?>')"></div>
-						<div class="post-thumbnail-mask">
-							<a href="<?php the_permalink(); ?>">
-								<div class="inner">
+					<a href="<?php the_permalink(); ?>">
+						<div class="post-thumbnail">
+							<?php the_post_thumbnail(); ?>
+							<div class="post-info">
+								<div class="post-info-inner">
 									<h2><?php the_title(); ?></h2>
+									<?php the_excerpt(); ?>
 								</div>
-							</a>
+							</div>
 						</div>
-					</div>
+					</a>
 				</article>
 
 			<?php endwhile;
 		endif;
 		?>
+		
 		</div>
 	</div>
 

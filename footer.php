@@ -4,7 +4,7 @@
 		<div class="footer-wrapper">
 			<div class="footer-border"></div>
 			<div class="container">
-				<p>*** some *** widgets *** go *** here ***</p>
+				<p>*** some *** widgets *** go *** here *** ? ***</p>
 			</div>
 		</div>
 	</footer>
@@ -13,9 +13,9 @@
 			<header class="menu-header">
 				<div class="container">
 					<div class="inner">
-						<a href="/" class="header-title"><h1>DUC SIEGENTHALER</h1></a>
+						<a href="/" class="header-title"><h1><?php echo bloginfo('name'); ?></h1></a>
 						<div class="header-menu-name">
-							<a href="<?php the_permalink?>"><h2><?php echo trim(wp_title('', false)) ?></h2></a>
+							<h2><?php echo trim(wp_title('', false)) ?></h2>
 						</div>
 						<div class="header-border"></div>
 					</div>

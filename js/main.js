@@ -3,11 +3,11 @@ jQuery(function ($) {
 
     /* setup main function and variables - do i need to rename these? */
 
-    var hoopy = function() {
+    var portfolio = function() {
         "use strict";
         var a, e, n, o, t;
         var s = function() {
-            a = $(document), e = $(window), n = $("html"), o = $("body"), t = n.add(o)
+            a= $(document), e = $(window), n = $("html"), o = $("body"), t = n.add(o),
 
             /* setup masonry */
 
@@ -41,8 +41,24 @@ jQuery(function ($) {
                         a()
                     }), s()
                 }
-                console.log('hello world masonry');
+
             }();
+
+            // landscape or portrait view ? 
+
+            ! function() {
+                function a() {
+                    Math.ceil(e.width() * t) > e.height() ? o.hasClass("window--landscape") || o.removeClass("window--portrait").addClass("window--landscape") : o.hasClass("window--portrait") || o.removeClass("window--landscape").addClass("window--portrait")
+                }
+                var n = 0,
+                    t = 1;
+                    a(), e.on("resize", function() {
+                        clearTimeout(n), n = setTimeout(function() {
+                            a()
+                        }, 30)
+                    })
+            }(),
+
 
             /* menu-toggle */
 
@@ -60,51 +76,44 @@ jQuery(function ($) {
                 }
             }();
 
-
             /* hover animations */
 
-        //     ! function() {
-        //             var e = !1,
-        //                 n = 0;
-        //             doc.on({
-        //                 touchstart: function() {
-        //                     var a = $(this);
-        //                     "touch" === a.data("action") ? a.addClass("is-hovered") : (e = !0, setTimeout(function() {
-        //                         e = !1
-        //                     }, 300))
-        //                 },
-        //                 touchmove: function() {
-        //                     $(this).removeClass("is-hovered")
-        //                 },
-        //                 touchend: function() {
-        //                     $(this).removeClass("is-hovered")
-        //                 },
-        //                 mouseenter: function() {
-        //                     e || $(this).addClass("is-hovered")
-        //                 },
-        //                 mouseleave: function() {
-        //                     $(this).removeClass("is-hovered")
-        //                 },
-        //                 click: function() {
-        //                     var a = $(this).addClass("is-clicked");
-        //                     clearTimeout(n), n = setTimeout(function() {
-        //                         a.removeClass("is-hovered is-clicked")
-        //                     }, 1e3)
-        //                 }}
-        //             , 'a, button, [data-action="hover"], [data-action="touch"]'), a.on("touchcancel", function() {
-        //                 $('a, button, [data-action="hover"], [data-action="touch"]').removeClass("is-hovered is-clicked")
-        //             })
-        //         }(), $('[target="_blank"]').add('[data-ga="true"]').on("click keydown", function() {
-        //             var a = $(this),
-        //                 e = a.attr("href"),
-        //                 n = a.data("ga-category"),
-        //                 o = a.data("ga-action"),
-        //                 t = a.data("ga-label");
-        //             ga("send", "event", n ? n : "outbound", o ? o : "click", t ? t : e, {
-        //                 nonInteraction: 1
-        //             })
-        //         })
-        //};
+            ! function() {
+
+                //declare variables
+                var e = !1,
+                    n = 0;
+
+                //recognise touch and mouse events and react to them
+                a.on({
+                    //this is the set of possible events and their handlers
+                    touchstart: function() {
+                        var a = $(this);
+                        "touch" === a.data("action") ? a.addClass('is-hovered'): (e = !0, setTimeout(function() {
+                            e = !1
+                        }, 300))
+                    },
+                    touchmove: function() {
+                        $(this).removeClass("is-hovered")
+                    },
+                    touchend: function() {
+                        $(this).removeClass("is-hovered")
+                    },
+                    mouseenter: function() {
+                        e || $(this).addClass('is-hovered')
+                    },
+                    mouseleave: function() {
+                        $(this).removeClass('is-hovered')
+                    },
+                    click: function() {
+                        var a = $(this).addClass('is-clicked');
+                        clearTimeout(n), n = setTimeout(function() {
+                            a.removeClass('is-hovered is-clicked')
+                        }, 1e3)
+                    }
+                }, 'a, [data-action="hover"], [data-action="touch"]');
+                
+            }();
 
         }();
         return {
@@ -114,7 +123,7 @@ jQuery(function ($) {
     $(function() {
         "use strict";
         return {
-            init: hoopy
+            init: portfolio
         }
     });
-}();
+});
